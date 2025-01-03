@@ -10,15 +10,13 @@ if (import.meta.env.MODE === "development") {
 import { DiscordSDK } from "@discord/embedded-app-sdk";
 import "./style.css";
 
-// Log the full URL and extract query parameters
-console.log("Full URL:", window.location.href);
-
+// Extract query parameters from the URL
 const urlParams = new URLSearchParams(window.location.search);
 let frameId = urlParams.get("frame_id");
 let instanceId = urlParams.get("instance_id");
 let platform = urlParams.get("platform");
 
-// Simulate missing parameters for local development
+// Simulate missing query parameters for local development
 if (import.meta.env.MODE === "development") {
   if (!frameId) {
     frameId = "test";
@@ -29,7 +27,7 @@ if (import.meta.env.MODE === "development") {
     console.log("Simulated instance_id for development:", instanceId);
   }
   if (!platform || (platform !== "desktop" && platform !== "mobile")) {
-    platform = "desktop";
+    platform = "desktop"; // Default to desktop
     console.log("Simulated platform for development:", platform);
   }
 }
@@ -37,31 +35,6 @@ if (import.meta.env.MODE === "development") {
 console.log("frame_id from URL:", frameId);
 console.log("instance_id from URL:", instanceId);
 console.log("platform from URL:", platform);
-
-// Check if the activity is running inside Discord
-const isRunningInDiscord = navigator.userAgent.includes("Discord");
-console.log("Running in Discord:", isRunningInDiscord);
-
-// Handle missing query parameters or non-Discord environments
-if (!isRunningInDiscord) {
-  document.querySelector("#app").innerHTML = `
-    <div>
-      <h1>Error</h1>
-      <p>This activity must be launched from Discord.</p>
-    </div>
-  `;
-  throw new Error("Discord SDK cannot initialize outside of Discord.");
-}
-
-if (!frameId || !instanceId || !platform) {
-  document.querySelector("#app").innerHTML = `
-    <div>
-      <h1>Error</h1>
-      <p>Required query parameters are missing. Please launch this activity from Discord.</p>
-    </div>
-  `;
-  throw new Error("Discord SDK cannot initialize without frame_id, instance_id, and platform.");
-}
 
 // Initialize the Discord SDK
 let discordSdk;
