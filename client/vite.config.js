@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: './', // Ensures the correct relative path for built files
+  base: '/getting-started-activity/', // Ensures the correct relative path for built files
   envDir: '../',
   server: {
     proxy: {
