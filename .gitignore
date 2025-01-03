@@ -13,7 +13,6 @@ node_modules
 .env
 
 # Modules + built files
-node_modules
 dist-ssr
 *.local
 
