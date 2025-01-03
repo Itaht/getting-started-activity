@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/getting-started-activity/', // Ensures the correct relative path for built files
+  base: process.env.NODE_ENV === 'production' ? '/getting-started-activity/' : '/', // Ensures the correct relative path for built files
   envDir: '../',
   server: {
     proxy: {
@@ -15,6 +15,9 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist', // Output directory for built files
+    rollupOptions: {
+      input: './index.html', // Ensure the correct input file
+    },
     assetsInlineLimit: 0, // Inline all assets to prevent CSP issues
   },
 });
