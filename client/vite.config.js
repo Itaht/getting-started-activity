@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  base: './', // Ensures the correct relative path for built files
   envDir: '../',
   server: {
     proxy: {
@@ -11,5 +12,9 @@ export default defineConfig({
         ws: true,
       },
     },
+  },
+  build: {
+    outDir: 'dist', // Output directory for built files
+    assetsInlineLimit: 0, // Inline all assets to prevent CSP issues
   },
 });
