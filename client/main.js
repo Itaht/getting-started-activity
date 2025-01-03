@@ -8,7 +8,6 @@ if (import.meta.env.MODE === "development") {
 }
 
 import { DiscordSDK } from "@discord/embedded-app-sdk";
-import "./style.css";
 
 // Log the full URL and extract query parameters
 console.log("Full URL:", window.location.href);
