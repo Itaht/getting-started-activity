@@ -1,3 +1,6 @@
+// Import CSS
+import './style.css';
+
 // Simulate running inside Discord by overriding the navigator.userAgent for development
 if (import.meta.env.MODE === "development") {
   Object.defineProperty(navigator, "userAgent", {
@@ -7,8 +10,8 @@ if (import.meta.env.MODE === "development") {
   console.log("Modified userAgent for development:", navigator.userAgent);
 }
 
+// Import the Discord SDK
 import { DiscordSDK } from "@discord/embedded-app-sdk";
-import "./style.css";
 
 // Extract query parameters from the URL
 const urlParams = new URLSearchParams(window.location.search);
