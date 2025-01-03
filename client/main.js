@@ -14,25 +14,9 @@ import "./style.css";
 console.log("Full URL:", window.location.href);
 
 const urlParams = new URLSearchParams(window.location.search);
-let frameId = urlParams.get("frame_id");
-let instanceId = urlParams.get("instance_id");
-let platform = urlParams.get("platform");
-
-// Simulate missing parameters for local development
-if (import.meta.env.MODE === "development") {
-  if (!frameId) {
-    frameId = "test";
-    console.log("Simulated frame_id for development:", frameId);
-  }
-  if (!instanceId) {
-    instanceId = "12345";
-    console.log("Simulated instance_id for development:", instanceId);
-  }
-  if (!platform || (platform !== "desktop" && platform !== "mobile")) {
-    platform = "desktop"; // Default to "desktop"
-    console.log("Simulated platform for development:", platform);
-  }
-}
+let frameId = urlParams.get("frame_id") || "test";
+let instanceId = urlParams.get("instance_id") || "12345";
+let platform = urlParams.get("platform") || "desktop";
 
 console.log("frame_id from URL:", frameId);
 console.log("instance_id from URL:", instanceId);
