@@ -29,7 +29,7 @@ if (import.meta.env.MODE === "development") {
     console.log("Simulated instance_id for development:", instanceId);
   }
   if (!platform || (platform !== "desktop" && platform !== "mobile")) {
-    platform = "desktop"; // Default to "desktop"
+    platform = "desktop";
     console.log("Simulated platform for development:", platform);
   }
 }
